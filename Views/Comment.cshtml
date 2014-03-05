@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Id = 3;
+}
+
+@{
+    int cont = 0;
+    var db = Database.Open("Curriculum");
+    var selectQueryString = "SELECT p.Nombre AS name, p.Email AS email, p.Telefono as phone, r.Comentario as comment FROM Recomendaciones AS r INNER JOIN Personas AS p ON r.IdPersona = p.IdPersona WHERE r.Status = 'True'";
+    if (Session["actual"] == null){
+        Response.Redirect("/Views/Login.cshtml");
+    }
+}
+<body>
+    <hr class="active">
+    <div class="alert alert-info"> <img src="/Images/Loading.gif" width="20" height="20" border="0" class="img-circle"/>
+            Por favor espere... Cargando datos.</div>
+    <div class="alert alert-success" style="display:none;">
+        <span class="glyphicon glyphicon-ok"></span> Listo!!</div>
+    <div>
+        <br/>
+        <h2>Recomendaciones</h2>
+        <br/>
+    </div>
+    <hr class="active">
+    <ul class="nav nav-pills nav-justified">
+        <li data-slide-to="1" class="active"><a data-toggle="modal" data-target="#comment">Nueva Recomendación</a></li>
+    </ul>
+    <br />
+    <div id="comments" class="container">
+        <ul class="timeline">
+            @foreach(var row in db.Query(selectQueryString))
+            {
+                if(cont == 0){
+                    cont = 1;
+                    <li>
+                        <div class="timeline-badge info"><i class="glyphicon glyphicon-comment"></i></div>
+                        <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">@row.name</h4>
+                            <div class="row contact row-first">
+                                <div class="col-md-7">
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-envelope">  </i>  @row.email</small></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-phone">  </i>  @row.phone</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p>@row.comment</p>
+                        </div>
+                        </div>
+                    </li>
+                }else{
+                    cont = 0;
+                    <li class="timeline-inverted">
+                        <div class="timeline-badge info"><i class="glyphicon glyphicon-comment"></i></div>
+                        <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">@row.name</h4>
+                            <div class="row contact row-first">
+                                <div class="col-md-7">
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-envelope">  </i>  @row.email</small></p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><small class="text-muted"><i class="glyphicon glyphicon-phone">  </i>  @row.phone</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-body">
+                            <p>@row.comment</p>
+                        </div>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <br/><br/>
+</body>

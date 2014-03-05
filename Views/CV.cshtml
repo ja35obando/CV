@@ -1,0 +1,224 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Id = 2;
+}
+
+@{
+    int cont = 0;
+    var db = Database.Open("Curriculum");
+    var selectQueryString = "SELECT * FROM Datos";
+    var selectQueryString2 = "SELECT * FROM Academicos";
+    var selectQueryString3 = "SELECT * FROM Computacionales";
+    if (Session["actual"] == null){
+        Response.Redirect("/Views/Login.cshtml");
+    }
+}
+
+
+<body>
+    <hr class="active">
+    <div class="alert alert-info"> <img src="/Images/Loading.gif" width="20" height="20" border="0" class="img-circle"/>
+            Por favor espere... Cargando datos.</div>
+    <div class="alert alert-success" style="display:none;">
+        <span class="glyphicon glyphicon-ok"></span> Listo!!</div>
+    <div class="content">
+        <center>
+            <div id="comments">
+                <div class="modal-body" style="text-align:center;">
+		            <div class="row-fluid">
+			            <div class="span10 offset1">
+			                <div id="modalTab">
+			                    <div class="tab-content">
+			                        <div class="tab-pane active" id="about">
+                                        <img id="Perfil" src="/Images/me.jpg" width="120" height="160" border="0" class="img-circle"/><br /><br />
+                                        <h2 id="h3" class="media-heading">José Andrés Obando Díaz</h2>
+                                        <small id="small"> <img src="/Images/bandera.jpg" width="11" height="11" border="0">  CRC</small><br /><br />
+                                    </div>
+	                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br />
+            </div>
+	    </center>
+        <br />
+        <table class="table">
+            <thead>
+                <center><h4>Datos Personales</h4><br /></center>
+                <tr class="warning">
+                    <th>
+                        Identificación:      
+                    </th>
+                    <th>
+                        1-1461-0267
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var row in db.Query(selectQueryString))
+                {
+                <tr>
+                    <td>
+                        Estado Civil:
+                    </td>
+                    <td>
+                        @row.estadoCivil
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        Dirección:
+                    </td>
+                    <td>
+                        @row.Direccion
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Teléfonos:
+                    </td>
+                    <td>
+                        @row.Telefonos
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        Email:
+                    </td>
+                    <td>
+                        @row.Email
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <hr class="active">
+        <table class="table">
+            <thead>
+                <center><h4>Estudios Academicos</h4><br /></center>
+                <tr class="warning">
+                    <th>
+                        Titulo      
+                    </th>
+                    <th>
+                        Instituto      
+                    </th>
+                    <th>
+                        Año      
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var row in db.Query(selectQueryString2))
+                {
+                    if(row.Finalizado == true){
+                        if(cont == 0){
+                            <tr>
+                                <td>
+                                    @row.Titulo
+                                </td>
+                                <td>
+                                    @row.Instituto
+                                </td>
+                                <td>
+                                    @row.Anio
+                                </td>
+                            </tr>
+                            cont = 1;
+                        }else{
+                            cont = 0;
+                            <tr class="success">
+                                <td>
+                                    @row.Titulo
+                                </td>
+                                <td>
+                                    @row.Instituto
+                                </td>
+                                <td>
+                                    @row.Anio
+                                </td>
+                            </tr>    
+                        }
+                    }else{
+                        <tr class="active">
+                            <td>
+                                @row.Titulo (Cursando)
+                            </td>
+                            <td>
+                                @row.Instituto
+                            </td>
+                            <td>
+                                @row.Anio
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <hr class="active">
+        <table class="table">
+            <thead>
+                <center><h4>Estudios Computacionales</h4><br/></center>
+                <tr class="warning">
+                    <th>
+                        Titulo      
+                    </th>
+                    <th>
+                        Instituto      
+                    </th>
+                    <th>
+                        Año      
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var row in db.Query(selectQueryString3))
+                {
+                    if (row.Finalizado == true)
+                    {
+                        if(cont == 0){
+                            <tr>
+                                <td>
+                                    @row.Titulo
+                                </td>
+                                <td>
+                                    @row.Instituto
+                                </td>
+                                <td>
+                                    @row.Anio
+                                </td>
+                            </tr>
+                            cont = 1;
+                        }else{
+                            cont = 0;
+                            <tr class="success">
+                                <td>
+                                    @row.Titulo
+                                </td>
+                                <td>
+                                    @row.Instituto
+                                </td>
+                                <td>
+                                    @row.Anio
+                                </td>
+                            </tr>    
+                        }
+                    }else{
+                        <tr class="active">
+                            <td>
+                                @row.Titulo (Cursando)
+                            </td>
+                            <td>
+                                @row.Instituto
+                            </td>
+                            <td>
+                                @row.Anio
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <hr class="active">
+    </div>
+</body>

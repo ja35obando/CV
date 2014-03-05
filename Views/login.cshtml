@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Num = 1;
+}
+
+@{
+    if (IsPost) {
+        var name = Request["email"];
+        var pass = Request["password"];
+        if((name=="José Obando") && (pass=="JA35_obando23")){
+            Session["Actual"] = "José Obando";
+            Response.Redirect("/Views/admin.cshtml");
+        }else{
+            if(pass == "12345"){
+                var db = Database.Open("Curriculum");
+                var selectQueryString = "SELECT * FROM Usuarios WHERE Nombre = '" + name + "'";
+                foreach(var row in db.Query(selectQueryString))
+                {
+                    Session["Actual"] = name;
+                    Response.Redirect("/Views/CV.cshtml");
+                }
+                var insertQuery = "INSERT INTO Usuarios(Nombre, Pass)VALUES('" + name + "', '" + pass + "')";
+                var db2 = Database.Open("Curriculum");
+                db2.Execute(insertQuery);
+                Session["Actual"] = name;
+                Response.Redirect("/Views/CV.cshtml");
+            }else{
+                this.Response.Write("<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><strong><h2 align='center'>Permiso denegado.</h2></strong><br><h4 align='center'> Credenciales incorrectos</h4></div>");
+            }
+        }
+    }
+}
+
+
+  <body>
+    <br />
+    <br />
+      <div id="comments" class="container">
+        <a href="/" class="close"><br />x</a>
+		<div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		        <form role="form" action="/Views/login.cshtml" method="post">
+                    <fieldset>
+                        <h2>Iniciar sección</h2>
+				        <hr class="colorgraph">
+				        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                            <input type="text" name="email" id="email" class="form-control input-lg" placeholder="Su nombre o nombre de la compañía">
+				        </div>
+				        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                            <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Contraseña">
+				        </div>
+				        <hr class="colorgraph">
+                        <div class="row contact row-first">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="Entrar">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="reset" class="btn btn-lg btn-danger btn-block" value="Limpiar"/>
+                            </div>
+                        </div>
+				    </fieldset>
+		        </form>
+	        </div>
+        </div><br /><br />
+    </div>
+</body>
