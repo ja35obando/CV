@@ -1,0 +1,10 @@
+﻿@{
+    if (IsPost)
+    {
+        var aux = Request["rcm_id"];
+        var insertQuery = "UPDATE Recomendaciones SET Status = 'True' WHERE idRcm = " + aux + "";
+        var db = Database.Open("Curriculum");
+        db.Execute(insertQuery);
+    }
+    Response.Redirect("/views/admin.cshtml");
+}

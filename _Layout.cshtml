@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Curriculum Vitae</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8"/>
+        <!-- Bootstrap -->
+        <link rel="icon" type="image/png" href="/Images/JA.svg.png" />
+        <link href="//bootswatch.com/yeti/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link href="/Content/global.css" rel="stylesheet" media="screen"/>
+        @{
+            if (Page.Num == 0)
+            {
+                <link href="/Content/index.css" rel="stylesheet" media="screen"/>
+            }
+            if (Page.Num == 1){ 
+                <link href="/Content/login.css" rel="stylesheet" media="screen"/>
+            }
+            if(Page.Num == 2){
+                <link href="/Content/CV.css" rel="stylesheet" media="screen"/>
+            }
+            if (Page.Id == 3){
+   	            <link href="/Content/comment.css" rel="stylesheet" media="screen"/>
+            }
+        }
+        <div id="div" class="modal-header">
+            <img id="JA" src="/Images/JA.svg.png" align="right"/>
+            <h1>Bienvenido a mi Curriculum</h1>
+            <br />
+            <br />
+        </div>
+        <br/>
+        @{
+            if(Page.Num < 2){
+               <ul class="nav nav-pills nav-justified">
+                    <li data-slide-to="0"><a href="/index.cshtml">Principal</a></li>
+                    <li data-slide-to="1"><a href="/Views/Login.cshtml">Iniciar Sección</a></li>
+                    <li data-slide-to="2"><a data-toggle="modal" data-target="#contact">Contácteme</a></li>
+                </ul>
+             }else{
+                <ul class="nav nav-pills nav-justified">
+                    <li data-slide-to="0"><a href="/Logic/index.cshtml">Principal</a></li>
+                    <li data-slide-to="1"><a href="/Views/CV.cshtml">Curriculum</a></li>
+                    <li data-slide-to="2"><a href="/Views/Comment.cshtml">Recomendaciones</a></li>
+                    <li data-slide-to="3"><a data-toggle="modal" data-target="#contact">Contácteme</a></li>
+                </ul>
+            }
+        }
+    </head>
+    <body>
+        @RenderBody()
+        <br />
+        <br />
+        <div class="modal fade" id="skype" tabindex="1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title"><i class="fa fa-skype"></i> Skype</h4>
+                    </div>
+                    <div>
+                        <br />
+                        <br />
+                        <center>
+                            <a href="#aboutModal" data-toggle="modal"><img src="/Images/yo 2.jpg" width="140" height="140" class="img-circle"></a><br />
+                            <label>  Nombre de usuario: </label>
+                            <h2>JA35obando23</h2>
+                        </center>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="contact" tabindex="2" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-edit"></span> Contácteme.</h4>
+                    </div>
+                    <form action="/Logic/Mailer.cshtml" method="post" accept-charset="utf-8">
+                        <div class="modal-body" style="padding: 5px;">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="firstname" placeholder="Nombre" type="text" required autofocus />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="lastname" placeholder="Apellidos" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="email" placeholder="Correo Electronico" type="email" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="subject" placeholder="Encabezado" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea style="resize:vertical;" class="form-control" placeholder="Mensaje..." rows="6" name="comment" required></textarea>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="panel-footer" style="margin-bottom:-14px;">
+                            <input type="submit" class="btn btn-success" value="Enviar"/>
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <input type="reset" class="btn btn-danger" value="Limpiar" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="comment" tabindex="3" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="panel-title" id="commentLabel"><span class="glyphicon glyphicon-edit"></span> Recomiendenme.</h4>
+                    </div>
+                    <form action="/Logic/Comentarios" method="post" accept-charset="utf-8">
+                        <div class="modal-body" style="padding: 5px;">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="commentFirstname" placeholder="Nombre" type="text" required autofocus />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="commentLastname" placeholder="Apellidos" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="commentEmail" placeholder="Correo Electronico" type="email" required />
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+                                    <input class="form-control" name="commentPhone" placeholder="Telefono" type="text" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea style="resize:vertical;" class="form-control" placeholder="Mensaje..." rows="6" name="commentMjs" required></textarea>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="panel-footer" style="margin-bottom:-14px;">
+                            <input type="submit" class="btn btn-success" value="Enviar"/>
+                                <!--<span class="glyphicon glyphicon-ok"></span>-->
+                            <input type="reset" class="btn btn-danger" value="Limpiar" />
+                                <!--<span class="glyphicon glyphicon-remove"></span>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+            <div class="well well-sm quick-contact">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h1 class="title-contact">
+                                    Contacto</h1>
+                            </div>
+                            <div class="col-md-4 contact-email">
+                                <h3>
+                                    José Andrés Obando Díaz</h3>
+                                <h5>
+                                    ja35obando@gmail.com</h5>
+                                <h5>
+                                    +506 8383-0335 o +506 7084-9331</h5>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row contact row-first">
+                                    <div class="col-md-6">
+                                        <a href="http://www.facebook.com/ja35obando" class="facebook"><i class="fa fa-facebook"><br/></i> Facebook</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="http://www.twitter.com/ja35obando" class="twitter"><i class="fa fa-twitter"><br/></i> Twitter</a>
+                                    </div>
+                                </div>
+                                <div class="row contact">
+                                    <div class="col-md-6">
+                                        <a href="https://plus.google.com/+JoséAndrésObandoDíaz35" class="google"><i class="fa fa-google-plus"><br/></i> Plus</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a class="skype  btn btn-lg" data-toggle="modal" data-target="#skype"><i class="fa fa-skype"><br/></i>Skype</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="//code.jquery.com/jquery.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+            <!-- jQuery (General) -->
+            <script src="/Scripts/General.js"></script>
+            @{  
+                if (Page.Num == 0)
+                {
+                    <!-- jQuery (index) -->
+                    <script src="/Scripts/index.js"></script>
+                }
+                if (Page.Num == 1){ 
+                    <!-- jQuery (Login) -->
+                    <script src="/Scripts/Login.js"></script>
+                }
+                if(Page.Id == 10) {
+                    <!-- jQuery (Admin) -->
+                    <script src="/Scripts/Admin.js"></script>
+                }
+                if (Page.Id == 2){ 
+                    <!-- jQuery (CV) -->
+                    <script src="/Scripts/CV.js"></script>
+                }
+                if (Page.Id == 3){
+   	                <!-- jQuery (Comment) -->
+                    <script src="/Scripts/Comment.js"></script>
+                }
+            }
+        </footer>
+    </body>
+</html>
