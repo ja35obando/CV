@@ -20,7 +20,8 @@
             if(Page.Num == 2){
                 <link href="/Content/CV.css" rel="stylesheet" media="screen"/>
             }
-            if (Page.Id == 3){
+            if (Page.Num == 3)
+            {
    	            <link href="/Content/comment.css" rel="stylesheet" media="screen"/>
             }
         }
@@ -32,19 +33,34 @@
         </div>
         <br/>
         @{
-            if(Page.Num < 2){
+            if (Page.Num < 2)
+            {
                <ul class="nav nav-pills nav-justified">
                     <li data-slide-to="0"><a href="/index.cshtml">Principal</a></li>
                     <li data-slide-to="1"><a href="/Views/Login.cshtml">Iniciar Sección</a></li>
                     <li data-slide-to="2"><a data-toggle="modal" data-target="#contact">Contácteme</a></li>
                 </ul>
              }else{
-                <ul class="nav nav-pills nav-justified">
+                if (Session["actual"] == "José Obando")
+                {
+                    <ul class="nav nav-pills nav-justified">
+                        <li data-slide-to="0"><a href="/Logic/index.cshtml">Principal</a></li>
+                        <li data-slide-to="1"><a href="/Views/CV.cshtml">Curriculum</a></li>
+                        <li data-slide-to="2"><a href="/Views/Comment.cshtml">Recomendaciones</a></li>
+                        <li data-slide-to="3"><a data-toggle="modal" data-target="#contact">Contácteme</a></li>
+                        <li data-slide-to="4"><a href="/Logic/Admin.cshtml">Habilitar</a></li>
+                        <li data-slide-to="5"><a href="/Views/Personal.cshtml">Personal</a></li>
+                        <li data-slide-to="6"><a href="/Views/Academicos.cshtml">Académicos</a></li>
+                        <li data-slide-to="7"><a href="/Views/Computacionales.cshtml">Computacionales</a></li>
+                    </ul>  
+                }else{
+                    <ul class="nav nav-pills nav-justified">
                     <li data-slide-to="0"><a href="/Logic/index.cshtml">Principal</a></li>
                     <li data-slide-to="1"><a href="/Views/CV.cshtml">Curriculum</a></li>
                     <li data-slide-to="2"><a href="/Views/Comment.cshtml">Recomendaciones</a></li>
                     <li data-slide-to="3"><a data-toggle="modal" data-target="#contact">Contácteme</a></li>
-                </ul>
+                </ul>    
+                }
             }
         }
     </head>
@@ -239,21 +255,40 @@
                     <!-- jQuery (index) -->
                     <script src="/Scripts/index.js"></script>
                 }
-                if (Page.Num == 1){ 
+                if (Page.Num == 1)
+                { 
                     <!-- jQuery (Login) -->
                     <script src="/Scripts/Login.js"></script>
                 }
-                if(Page.Id == 10) {
+                if (Page.Num == 10)
+                {
                     <!-- jQuery (Admin) -->
                     <script src="/Scripts/Admin.js"></script>
                 }
-                if (Page.Id == 2){ 
+                if (Page.Num == 2)
+                { 
                     <!-- jQuery (CV) -->
                     <script src="/Scripts/CV.js"></script>
                 }
-                if (Page.Id == 3){
+                if (Page.Num == 3)
+                {
    	                <!-- jQuery (Comment) -->
                     <script src="/Scripts/Comment.js"></script>
+                }
+                if (Page.Num == 10)
+                {
+   	                <!-- jQuery (Comment) -->
+                    <script src="/Scripts/admin.js"></script>
+                }
+                if (Page.Num == 5)
+                {
+   	                <!-- jQuery (Comment) -->
+                    <script src="/Scripts/Personal.js"></script>
+                }
+                if (Page.Num == 6)
+                {
+   	                <!-- jQuery (Comment) -->
+                    <script src="/Scripts/Academicos.js"></script>
                 }
             }
         </footer>

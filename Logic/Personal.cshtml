@@ -1,0 +1,16 @@
+﻿@{
+    if (IsPost)
+    {
+        var EstCivil = Request["EstCivil"];
+        var Direccion = Request["Direccion"];
+        var Telefonos = Request["Telefonos"];
+        var DPEmail = Request["DPEmail"];
+        var insertQuery = "Delete Datos";
+        var db = Database.Open("Curriculum");
+        db.Execute(insertQuery);
+        insertQuery = null;
+        insertQuery = "INSERT INTO Datos (estadoCivil, Direccion, Telefonos, Email) VALUES ('" + EstCivil + "','" + Direccion +"','" + Telefonos + "','" + DPEmail + "')";
+        db.Execute(insertQuery);
+    }
+    Response.Redirect("/views/Personal.cshtml");
+}

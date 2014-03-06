@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
-    Page.Id = 10;
+    Page.Num = 10;
 }
 
 @{
@@ -75,7 +75,7 @@
                                 @row.comment
                             </td>
                             <td>
-                                <form action="/Logic/admin.cshtml/@row.id" method="get">
+                                <form action="/Logic/admin.cshtml/@row.id" method="post">
                                     <input name="rcm_id" type="hidden" value="@row.id"/>
                                     <input type="submit" class="btn btn-lg btn-success btn-block" value=" Habilitar "/>
 					            </form>

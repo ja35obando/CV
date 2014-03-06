@@ -70,6 +70,10 @@ h2 {
 .nav-pills>li[data-slide-to="1"].active a { background-color: #2980b9; }
 .nav-pills>li[data-slide-to="2"].active a { background-color: #16a085; }
 .nav-pills>li[data-slide-to="3"].active a { background-color: #2980b9; }
+.nav-pills>li[data-slide-to="4"].active a { background-color: #2980b9; }
+.nav-pills>li[data-slide-to="5"].active a { background-color: #16a085; }
+.nav-pills>li[data-slide-to="6"].active a { background-color: #2980b9; }
+.nav-pills>li[data-slide-to="7"].active a { background-color: #16a085; }
 
 #div img {
     width: 20%;

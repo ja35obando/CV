@@ -1,0 +1,13 @@
+﻿@{
+    if (IsPost)
+    {
+        var title = Request["title"];
+        var institute = Request["institute"];
+        var anio = Request["anio"];
+        var status = Request["status"];
+        var db = Database.Open("Curriculum");
+        var insertQuery = "INSERT INTO Academicos (Titulo, Instituto, Anio, Finalizado) VALUES (N'" + title + "', N'" + institute + "'," + anio + "," + status +")";
+        db.Execute(insertQuery);
+    }
+    Response.Redirect("/views/academicos.cshtml");
+}
