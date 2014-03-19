@@ -1,0 +1,8 @@
+﻿@{
+    string filename = "Curriculum_Vitae.docx";
+    Response.ContentType = "application/octet-stream";
+    Response.AppendHeader("Content-Disposition", "attachment;filename=" + filename);
+    string aaa = Server.MapPath("~/SavedFolder/" + filename);
+    Response.TransmitFile(Server.MapPath("~/SavedFolder/" + filename));
+    Response.End();
+}
