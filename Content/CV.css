@@ -1,4 +1,5 @@
-﻿#Perfil {
+﻿@import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
+#Perfil {
     margin-right: 3%;
 }
 .table {
@@ -323,4 +324,25 @@ width: 140px;
     position: absolute;
     padding-left: 220px;
     font-size: 30px;
+}
+
+ .panel-google-plus {
+    position: relative;
+    border-radius: 0px;
+    border: 1px solid rgb(216, 216, 216);
+    font-family: 'Roboto', sans-serif;
+}
+.panel-google-plus > .panel-heading,
+.panel-google-plus > .panel-footer {
+    background-color: rgb(255, 255, 255);
+    border-width: 0px;
+}
+.panel-google-plus > .panel-heading > h5 {
+    color: rgb(153, 153, 153);
+    font-size: 12px;
+    font-weight: 400;
+}
+.panel-google-plus > .panel-body {
+    padding-top: 5px;
+    font-size: 13px;
 }

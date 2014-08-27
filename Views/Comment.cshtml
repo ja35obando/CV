@@ -24,55 +24,25 @@
         <li data-slide-to="1" class="active"><a data-toggle="modal" data-target="#comment">Nueva Recomendación</a></li>
     </ul>
     <br />
-    <div id="comments" class="container">
-        <ul class="timeline">
-            @foreach(var row in db.Query(selectQueryString))
-            {
-                if(cont == 0){
-                    cont = 1;
-                    <li>
-                        <div class="timeline-badge info"><i class="glyphicon glyphicon-comment"></i></div>
-                        <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">@row.name</h4>
-                            <div class="row contact row-first">
-                                <div class="col-md-7">
-                                    <p><small class="text-muted"><i class="glyphicon glyphicon-envelope">  </i>  @row.email</small></p>
-                                </div>
-                                <div class="col-md-4">
-                                    <p><small class="text-muted"><i class="glyphicon glyphicon-phone">  </i>  @row.phone</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-body">
-                            <p>@row.comment</p>
-                        </div>
-                        </div>
-                    </li>
-                }else{
-                    cont = 0;
-                    <li class="timeline-inverted">
-                        <div class="timeline-badge info"><i class="glyphicon glyphicon-comment"></i></div>
-                        <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">@row.name</h4>
-                            <div class="row contact row-first">
-                                <div class="col-md-7">
-                                    <p><small class="text-muted"><i class="glyphicon glyphicon-envelope">  </i>  @row.email</small></p>
-                                </div>
-                                <div class="col-md-4">
-                                    <p><small class="text-muted"><i class="glyphicon glyphicon-phone">  </i>  @row.phone</small></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-body">
-                            <p>@row.comment</p>
-                        </div>
-                        </div>
-                    </li>
-                }
-            }
-        </ul>
-    </div>
+    @foreach(var row in db.Query(selectQueryString))
+    {
+        <div class="[ panel panel-default ] panel-google-plus">
+            <div class="panel-heading">
+                <img class="[ img-circle pull-left ]" src="https://cdn3.iconfinder.com/data/icons/users/100/user_male_1-512.png" alt="Mouse0270" />
+                <h3>@row.name</h3>
+                <div class="row contact row-first">
+                    <div class="col-md-7">
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-envelope">  </i>  @row.email</small></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><small class="text-muted"><i class="glyphicon glyphicon-phone">  </i>  @row.phone</small></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p>@row.comment</p>
+            </div>
+        </div>
+    }
     <br/><br/>
 </body>
